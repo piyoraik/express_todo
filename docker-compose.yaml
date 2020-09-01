@@ -1,0 +1,24 @@
+version: '3'
+services:
+  node:
+    container_name: node
+    build:
+      context: ./
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app:/app
+    tty: true
+
+  mysql:
+    container_name: mysql
+    build:
+      context: ./
+      dockerfile: Dockerfile_mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: node
+    volumes:
+      - ./mysql:/etc/lib/mysql

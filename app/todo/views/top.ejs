@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <a href="/new">+新規作成</a>
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Name</th>
+      </thead>
+      <% items.forEach((item) => { %>
+        <tr>
+          <td><%= item.id %> </td>
+          <td><%= item.name %> </td>
+          <td><a href="/edit/<%= item.id %> ">編集</a></td>
+          <td>
+            <form action="/delete/<%= item.id %> " method="POST">
+              <input type="submit" value="削除">
+            </form>
+          </td>
+        </tr>
+      <% }) %> 
+    </table>
+  </body>
+</html>
