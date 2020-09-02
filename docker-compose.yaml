@@ -8,10 +8,11 @@ services:
       - 3000:3000
     volumes:
       - ./app:/app
+      - ./conf/.bashrc:/root/.bashrc
     tty: true
 
-  mysql:
-    container_name: mysql
+  mariadb:
+    container_name: mariadb
     build:
       context: ./
       dockerfile: Dockerfile_mysql
@@ -21,4 +22,14 @@ services:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: node
     volumes:
-      - ./mysql:/etc/lib/mysql
+      - ./mysql:/var/lib/mysql
+
+  # cloud9:
+  #   container_name: cloud9
+  #   build:
+  #     context: ./
+  #     dockerfile: dockerfile_cloud9
+  #   ports:
+  #     - 8181:8181
+  #     - 3000:3000
+  #   command: "node /c9sdk/server.js -w /c9sdk/workspace --port 8181 --listen 0.0.0.0 --auth :"
